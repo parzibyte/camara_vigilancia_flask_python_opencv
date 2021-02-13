@@ -78,12 +78,13 @@ def obtener_frame_camara():
     if not ok:
         return False, None
     agregar_fecha_hora_frame(frame)
-    # Codificar la imagen como JPG
-    _, bufer = cv2.imencode(".jpg", frame)
-    imagen = bufer.tobytes()
     # Escribir en el vídeo en caso de que se esté grabando
     if grabando and archivo_video is not None:
         archivo_video.write(frame)
+    # Codificar la imagen como JPG
+    _, bufer = cv2.imencode(".jpg", frame)
+    imagen = bufer.tobytes()
+
     return True, imagen
 
 
